@@ -1,0 +1,43 @@
+.containerHome {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -0.03em;
+  margin-bottom: 25px;
+}
+
+.taskItem {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.taskItem :hover,
+.taskItem :focus {
+  color: blue;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 50px;
+  }
+
+  .taskItem {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .title {
+  }
+
+  .taskItem {
+    font-size: 35px;
+  }
+}

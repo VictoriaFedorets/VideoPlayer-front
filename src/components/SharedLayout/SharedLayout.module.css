@@ -1,0 +1,32 @@
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
+
+  width: 100%;
+  max-width: 375px;
+  background: var(--background);
+  transition: all 0.3s ease-in-out;
+}
+
+.section {
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 0 32px;
+    max-width: 768px;
+  }
+
+  .section {
+    min-height: calc(100vh - 112px);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+    padding: 0 64px;
+  }
+}

@@ -6,6 +6,9 @@ import SharedLayout from "@components/SharedLayout/SharedLayout.js";
 // import Loader from "./components/Loader/Loader.jsx";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage.js"));
+const AudioPlayer = lazy(
+  () => import("./pages/AudioPlayerPage/AudioPlayerPage.js")
+);
 
 export default function App() {
   return (
@@ -24,6 +27,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
+            <Route path="audioPlayer" element={<AudioPlayer />} />
           </Route>
         </Routes>
       </Suspense>

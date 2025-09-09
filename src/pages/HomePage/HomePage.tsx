@@ -9,7 +9,7 @@ export default function HomePage() {
   }
 
   const tasks: Task[] = [
-    { id: 1, title: "Audio player", patch: "/audioPlayer" },
+    { id: 1, title: "Video player", patch: "/videoPlayer" },
   ];
 
   return (

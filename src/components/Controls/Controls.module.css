@@ -1,0 +1,9 @@
+.btnWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnFirstBlock {
+  display: flex;
+  gap: 20px;
+}

@@ -1,6 +1,7 @@
 import { RefObject, useState } from "react";
 import css from "@components/Buttons/Buttons.module.css";
-
+import VolumeOff from "../../../public/icons/VolumeOff";
+import VolumeOn from "../../../public/icons/VolumeOn";
 export default function VolumeControlBtn({
   videoRef,
 }: {
@@ -44,11 +45,11 @@ export default function VolumeControlBtn({
           toggleVisible();
         }}
       >
-        <img
-          className={css.icons}
-          src={volume > 0 ? "/icons/volume-on.svg" : "/icons/volume-off.svg"}
-          alt="volume"
-        />
+        {volume > 0 ? (
+          <VolumeOn className={css.icons} />
+        ) : (
+          <VolumeOff className={css.icons} />
+        )}
       </button>
 
       {isVisible && (

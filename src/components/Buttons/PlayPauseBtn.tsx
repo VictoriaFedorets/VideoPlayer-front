@@ -1,5 +1,7 @@
 import { RefObject, useState } from "react";
 import css from "@components/Buttons/Buttons.module.css";
+import Play from "../../../public/icons/Play";
+import Pause from "../../../public/icons/Pause";
 
 export default function PlayPauseBtn({
   videoRef,
@@ -24,11 +26,11 @@ export default function PlayPauseBtn({
       className={`${css.btn} ${isPlaying ? css.active : ""}`}
       onClick={togglePlaying}
     >
-      <img
-        className={css.icons}
-        src={isPlaying ? "/icons/pause.svg" : "/icons/play.svg"}
-        alt="play"
-      />
+      {isPlaying ? (
+        <Pause className={css.icons} />
+      ) : (
+        <Play className={css.icons} />
+      )}
     </button>
   );
 }

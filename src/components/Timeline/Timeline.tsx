@@ -4,7 +4,7 @@ import css from "./Timeline.module.css";
 export default function Timeline({
   videoRef,
 }: {
-  videoRef: RefObject<HTMLVideoElement>;
+  videoRef: RefObject<HTMLVideoElement | null>;
 }) {
   const [currentTime, setCurrentTime] = useState(0);
   const [length, setLength] = useState(0);

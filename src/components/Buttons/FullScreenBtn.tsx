@@ -1,6 +1,6 @@
 import { RefObject } from "react";
+import FullScreen from "icons/FullScreen";
 import css from "@components/Buttons/Buttons.module.css";
-import FullScreen from "../../../public/icons/FullScreen";
 
 export default function FullScreenBtn({
   videoRef,

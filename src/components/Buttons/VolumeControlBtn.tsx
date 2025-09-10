@@ -1,7 +1,8 @@
-import { RefObject, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import css from "@components/Buttons/Buttons.module.css";
-import VolumeOff from "../../../public/icons/VolumeOff";
-import VolumeOn from "../../../public/icons/VolumeOn";
+import VolumeOff from "icons/VolumeOff";
+import VolumeOn from "icons/VolumeOn";
+
 export default function VolumeControlBtn({
   videoRef,
 }: {
@@ -9,8 +10,6 @@ export default function VolumeControlBtn({
 }) {
   const [volume, setVolume] = useState(100);
   const [isVisible, setIsVisible] = useState(false);
-
-  // muted метод чтоб звук на выходе видео должен быть отключен,возможно заменю
 
   const toggleOnOff = () => {
     if (!videoRef.current) return;
@@ -31,6 +30,12 @@ export default function VolumeControlBtn({
       videoRef.current.volume = newVolume / 100;
     }
   };
+
+  useEffect(() => {
+    const handleClose = () => setIsVisible(false);
+    document.addEventListener("closeDropdowns", handleClose);
+    return () => document.removeEventListener("closeDropdowns", handleClose);
+  }, []);
 
   const toggleVisible = () => {
     setIsVisible(!isVisible);
@@ -55,12 +60,14 @@ export default function VolumeControlBtn({
       {isVisible && (
         <>
           <input
+            className={css.inputVolume}
             type="range"
             min="0"
             max="100"
             step="1"
             value={volume}
             onChange={volumeChange}
+            style={{ "--value": `${volume}%` } as React.CSSProperties}
           />
           <span>{volume}%</span>
         </>

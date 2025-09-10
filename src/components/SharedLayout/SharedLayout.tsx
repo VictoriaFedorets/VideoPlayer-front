@@ -1,4 +1,3 @@
-import React from "react";
 import css from "./SharedLayout.module.css";
 import { Outlet } from "react-router-dom";
 import { FC } from "react";

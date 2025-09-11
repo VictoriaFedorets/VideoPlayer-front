@@ -1,0 +1,59 @@
+.progressBar {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  height: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.progress {
+  box-sizing: border-box;
+  border-radius: 7px;
+  width: 0%;
+  height: 100%;
+  background-color: rgb(168, 166, 166);
+  transition: all 0.2s ease-in-out;
+}
+
+.currentTime {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+@media screen and (min-width: 768px) {
+  .progressBar {
+    height: 25px;
+    border-radius: 12px;
+  }
+
+  .progress {
+    border-radius: 12px;
+  }
+
+  .currentTime {
+    right: 10px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .progressBar {
+    height: 30px;
+    border-radius: 14px;
+  }
+
+  .progress {
+    border-radius: 12px;
+  }
+
+  .currentTime {
+    right: 10px;
+    font-size: 18px;
+  }
+}

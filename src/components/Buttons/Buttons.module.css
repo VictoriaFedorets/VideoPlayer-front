@@ -1,0 +1,138 @@
+.btn {
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover,
+.btn.active {
+  background-color: rgb(168, 166, 166);
+  transform: scale(1.05);
+}
+
+.icons {
+  width: 15px;
+}
+
+.speedDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownMenu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  z-index: 10;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dropdownItem {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover,
+.dropdownItem.active {
+  background-color: rgb(168, 166, 166);
+  color: #fff;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  margin: 0;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  outline: none;
+  background: linear-gradient(
+    to right,
+    #555 0%,
+    #555 var(--value, 0%),
+    #ccc var(--value, 0%),
+    #ccc 100%
+  );
+}
+
+/* Chrome, Safari, Edge */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #292828;
+  cursor: pointer;
+  border: 2px solid #fff;
+  margin-top: -5px;
+  transition: background 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #000000;
+}
+
+/* Firefox */
+input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #ccc;
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 6px;
+  border-radius: 3px;
+  background: #555;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #292828;
+  cursor: pointer;
+  border: 2px solid #fff;
+  transition: background 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: #000000;
+}
+
+@media screen and (min-width: 768px) {
+  .btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icons {
+    width: 18px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .icons {
+    width: 25px;
+  }
+}

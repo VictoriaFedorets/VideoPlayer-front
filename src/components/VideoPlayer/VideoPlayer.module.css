@@ -1,0 +1,29 @@
+.videoConteiner {
+  margin-top: 50px;
+}
+
+.video {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  background-color: black;
+}
+
+@media screen and (min-width: 768px) {
+  .video {
+    max-width: 900px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .videoConteiner {
+    margin-top: 100px;
+  }
+
+  .video {
+    max-width: 1200px;
+  }
+}

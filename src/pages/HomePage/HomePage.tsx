@@ -5,12 +5,11 @@ export default function HomePage() {
   interface Task {
     id: number;
     title: string;
+    patch: string;
   }
 
   const tasks: Task[] = [
-    { id: 1, title: "First task" },
-    { id: 2, title: "Second task" },
-    { id: 2, title: "Next task" },
+    { id: 1, title: "Video player", patch: "/videoPlayer" },
   ];
 
   return (
@@ -19,7 +18,7 @@ export default function HomePage() {
       <ul>
         {tasks.map((task) => (
           <li className={css.taskItem} key={task.id}>
-            <Link to={"/task/${task.id}"}>{task.title}</Link>
+            <Link to={`${task.patch}`}>{task.title}</Link>
           </li>
         ))}
       </ul>

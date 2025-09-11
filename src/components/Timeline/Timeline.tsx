@@ -67,6 +67,7 @@ export default function Timeline({
       <div className={css.progress} style={{ width: `${progress}%` }}></div>
 
       <div className={css.cursor} style={{ left: `${progress}%` }}></div>
+
       <span className={css.currentTime}>
         {formatTime(currentTime)}/{formatTime(duration)}
       </span>

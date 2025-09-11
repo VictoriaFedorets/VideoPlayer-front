@@ -39,6 +39,7 @@ export default function VideoPlayer() {
     <div className={css.videoConteiner}>
       <h1>Video player</h1>
       <video
+        autoPlay
         className={css.video}
         ref={videoRef}
         src="/video/videoplayback.mp4"

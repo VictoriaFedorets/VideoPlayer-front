@@ -1,7 +1,7 @@
 import { RefObject, useEffect, useState } from "react";
-import css from "@components/Buttons/Buttons.module.css";
 import VolumeOff from "icons/VolumeOff";
 import VolumeOn from "icons/VolumeOn";
+import css from "@components/Buttons/Buttons.module.css";
 
 export default function VolumeControlBtn({
   videoRef,
@@ -26,6 +26,7 @@ export default function VolumeControlBtn({
   const volumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = Number(e.target.value);
     setVolume(Number(e.target.value));
+
     if (videoRef.current) {
       videoRef.current.volume = newVolume / 100;
     }

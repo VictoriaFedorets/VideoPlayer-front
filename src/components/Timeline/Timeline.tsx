@@ -25,7 +25,7 @@ export default function Timeline({
 
   const progress = duration ? (currentTime / duration) * 100 : 0;
 
-  // Перемотка
+  // перемотування
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!videoRef.current || !progressRef.current) return;
 

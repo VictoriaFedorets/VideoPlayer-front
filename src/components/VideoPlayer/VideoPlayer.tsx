@@ -10,11 +10,16 @@ export default function VideoPlayer() {
   const [duration, setDuration] = useState(0);
 
   const handleTimeUpdate = () => {
-    if (videoRef.current) setCurrentTime(videoRef.current.currentTime);
+    if (videoRef.current) {
+      setCurrentTime(videoRef.current.currentTime);
+    }
   };
 
+  // тривалість записуємо в стейт
   const handleLoadedMetadata = () => {
-    if (videoRef.current) setDuration(videoRef.current.duration);
+    if (videoRef.current) {
+      setDuration(videoRef.current.duration);
+    }
   };
 
   useEffect(() => {

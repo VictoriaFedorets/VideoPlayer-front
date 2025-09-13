@@ -1,0 +1,72 @@
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  position: relative;
+  width: auto;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.iconClose {
+  display: block;
+  fill: none;
+  width: 15px;
+  height: 15px;
+  stroke-width: 2px;
+  stroke: #fbbc05;
+  transition: stroke 0.3s ease, transform 0.2s ease;
+}
+
+.closeButton:hover .iconClose,
+.closeButton:focus .iconClose {
+  stroke: black;
+  transform: scale(0.95);
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 30px;
+  }
+
+  .closeButton {
+    top: 30px;
+    right: 30px;
+    width: 20px;
+    height: 20px;
+  }
+}

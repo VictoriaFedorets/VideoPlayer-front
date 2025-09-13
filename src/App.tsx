@@ -1,11 +1,11 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 // import { ToastContainer } from "react-toastify";
-import SharedLayout from "@components/SharedLayout/SharedLayout.js";
+import SharedLayout from "layouts/SharedLayout/SharedLayout";
 
-const HomePage = lazy(() => import("./pages/HomePage/HomePage.js"));
-const AudioPlayer = lazy(
-  () => import("./pages/VideoPlayerPage/VideoPlayerPage.js")
+const HomePage = lazy(() => import("@pages/HomePage/HomePage"));
+const VideoPlayer = lazy(
+  () => import("@pages/VideoPlayerPage/VideoPlayerPage")
 );
 
 export default function App() {
@@ -21,11 +21,11 @@ export default function App() {
         draggable
       /> */}
 
-      <Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="videoPlayer" element={<AudioPlayer />} />
+            <Route path="videoPlayer" element={<VideoPlayer />} />
           </Route>
         </Routes>
       </Suspense>

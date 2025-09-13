@@ -1,6 +1,6 @@
 :root {
-  --background: #fff;
-  --main-text: #121417;
+  --background: #1e2023;
+  --main-text: rgba(255, 252, 252, 0.938);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -20,7 +20,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   color: var(--main-text);
-  background-color: var(--background);
+  background: var(--background);
 }
 
 a {

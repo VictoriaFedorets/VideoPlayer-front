@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import Controls from "@components/Controls/Controls";
 import css from "./VideoPlayer.module.css";
 
-export default function VideoPlayer() {
+interface VideoPlayerProps {
+  src: string;
+}
+
+export default function VideoPlayer({ src }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const controlsRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +46,7 @@ export default function VideoPlayer() {
         autoPlay
         className={css.video}
         ref={videoRef}
-        src="/video/videoplayback.mp4"
+        src={src}
         preload="metadata"
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}

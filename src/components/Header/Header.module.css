@@ -26,7 +26,7 @@
 
 .btnPlus:hover,
 .btnPlus:focus {
-  background-color: rgb(168, 166, 166);
+  background-color: #eca31b;
   transform: scale(1.05);
 }
 

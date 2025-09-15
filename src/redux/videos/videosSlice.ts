@@ -4,6 +4,7 @@ export interface VideoData {
   id: string;
   name: string;
   url: string;
+  poster?: string;
   type: "local" | "external";
 }
 

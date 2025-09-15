@@ -14,7 +14,6 @@ export const saveVideoToLS =
       ...video,
       type: video.url.startsWith("http") ? "external" : "local",
     };
-
     const saved = JSON.parse(localStorage.getItem("videoData") || "[]");
     const updated = [...saved, videoWithId];
     localStorage.setItem("videoData", JSON.stringify(updated));

@@ -13,6 +13,10 @@
   cursor: pointer;
 }
 
+.videoItem img {
+  border-radius: 7px;
+}
+
 @media screen and (min-width: 768px) {
   .videoList {
     flex-direction: row;
@@ -26,8 +30,6 @@
   }
 
   video {
-    width: 100%;
-    height: 200px;
   }
 }
 

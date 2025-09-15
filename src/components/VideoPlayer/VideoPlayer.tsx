@@ -3,10 +3,11 @@ import Controls from "@components/Controls/Controls";
 import css from "./VideoPlayer.module.css";
 
 interface VideoPlayerProps {
+  name: string;
   src: string;
 }
 
-export default function VideoPlayer({ src }: VideoPlayerProps) {
+export default function VideoPlayer({ name, src }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const controlsRef = useRef<HTMLDivElement>(null);
 
@@ -41,7 +42,7 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
 
   return (
     <div className={css.videoConteiner}>
-      <h1>Video player</h1>
+      <h2>{name}</h2>
       <video
         autoPlay
         className={css.video}

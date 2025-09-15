@@ -1,24 +1,28 @@
 .btn {
   width: 25px;
   height: 25px;
-  border: none;
   border-radius: 8px;
+  border: 1px solid rgb(32, 32, 32);
   display: flex;
   align-items: center;
   flex-shrink: 0;
   justify-content: center;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover,
 .btn.active {
-  background-color: rgb(168, 166, 166);
   transform: scale(1.05);
 }
 
 .icons {
   width: 15px;
+  fill: #aaa7a7;
+}
+
+.btn:hover .icons {
+  fill: #ffffff;
 }
 
 .speedDropdown {
@@ -58,10 +62,10 @@ input[type="range"] {
   outline: none;
   background: linear-gradient(
     to right,
-    #555 0%,
-    #555 var(--value, 0%),
+    #ccc 0%,
     #ccc var(--value, 0%),
-    #ccc 100%
+    #555 var(--value, 0%),
+    #555 100%
   );
 }
 

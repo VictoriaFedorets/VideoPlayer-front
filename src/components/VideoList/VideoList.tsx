@@ -13,18 +13,31 @@ export default function VideoList() {
 
   const getYouTubeThumbnail = (url: string) => {
     try {
-      const videoId = new URL(url).searchParams.get("v");
+      let videoId = null;
+
+      if (url.includes("youtube.com")) {
+        videoId = new URL(url).searchParams.get("v");
+      } else if (url.includes("youtu.be")) {
+        const path = new URL(url).pathname;
+        videoId = path.split("/")[1];
+      }
+
       return videoId
         ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
-        : "";
+        : null;
     } catch {
-      return "";
+      return null;
     }
   };
 
   const handleClick = (video: VideoData) => {
-    if (video.type === "local") {
+    if (video.type === "local" || video.url.endsWith(".mp4")) {
       navigate("/videoPlayer", { state: video });
+    } else if (
+      video.url.includes("youtube.com") ||
+      video.url.includes("youtu.be")
+    ) {
+      window.open(video.url, "_blank");
     } else {
       window.open(video.url, "_blank");
     }
@@ -47,14 +60,16 @@ export default function VideoList() {
               onClick={() => handleClick(video)}
             >
               <h4>{video.name}</h4>
-              {video.type === "local" ? (
-                <video src={video.url} controls width="100%" height="200" />
-              ) : video.url.includes("youtube.com") ? (
+
+              {video.type === "local" || video.url.endsWith(".mp4") ? (
+                <video preload="metadata" poster={video.poster || undefined}>
+                  <source src={video.url} type="video/mp4" />
+                </video>
+              ) : video.url.includes("youtube.com") ||
+                video.url.includes("youtu.be") ? (
                 <img
-                  src={getYouTubeThumbnail(video.url)}
-                  alt={video.name}
-                  width="100%"
-                  height="200"
+                  src={getYouTubeThumbnail(video.url) || undefined}
+                  alt="poster video"
                 />
               ) : (
                 <div className={css.externalVideo}>

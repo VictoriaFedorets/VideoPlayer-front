@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-// import { ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import SharedLayout from "layouts/SharedLayout/SharedLayout";
 
 const HomePage = lazy(() => import("@pages/HomePage/HomePage"));
@@ -11,7 +11,7 @@ const VideoPlayer = lazy(
 export default function App() {
   return (
     <>
-      {/* <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         limit={3}
@@ -19,7 +19,7 @@ export default function App() {
         closeOnClick
         pauseOnHover
         draggable
-      /> */}
+      />
 
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>

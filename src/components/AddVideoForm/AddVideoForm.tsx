@@ -1,14 +1,17 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState } from "react";
 import BaseModal from "@components/BaseModal/BaseModal";
 import css from "./AddVideoForm.module.css";
 import { saveVideoToLS } from "redux/videos/videosOperations";
 import { useAppDispatch } from "redux/hooks";
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 interface VideoData {
   id: string;
   name: string;
   url: string;
+  poster?: string;
   type: "local" | "external";
 }
 
@@ -16,106 +19,151 @@ interface VideoFormProps {
   onClose: () => void;
 }
 
+interface VideoFormInputs {
+  name: string;
+  url: string;
+  poster?: string;
+}
+
 export default function AddVideoForm({ onClose }: VideoFormProps) {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const [videoName, setVideoName] = useState("");
-  const [videoURL, setVideoURL] = useState("");
-
   const dispatch = useAppDispatch();
 
-  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0];
-  //   console.log(file);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<VideoFormInputs>();
 
-  //   if (!file) return;
+  const videoURL = watch("url");
+  const posterURL = watch("poster");
 
-  //   setVideoName(file.name);
-
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     setVideoURL(reader.result as string); // зберігаємо dataURL
-  //   };
-  //   reader.readAsDataURL(file); // читаємо файл з base64
-  // };
-
-  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setVideoName(e.target.value);
-  };
-
-  const handleURLChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setVideoURL(e.target.value);
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const type = videoURL.startsWith("http") ? "external" : "local";
+  const onSubmit: SubmitHandler<VideoFormInputs> = (data) => {
+    const type = data.url.startsWith("http") ? "external" : "local";
 
     const videoData: VideoData = {
       id: uuidv4(),
-      name: videoName,
-      url: videoURL,
+      name: data.name.trim(),
+      url: data.url.trim(),
+      poster: data.poster?.trim(),
       type,
     };
 
-    // const videoData: VideoData = { name: videoName, url: videoURL };
-
     dispatch(saveVideoToLS(videoData));
 
-    // const saved = JSON.parse(
-    //   localStorage.getItem("videoData") || "[]"
-    // ) as VideoData[];
-
-    // const updatedVideoList = [...saved, videoData];
-
-    // localStorage.setItem("videoData", JSON.stringify(updatedVideoList));
-
-    // console.log("Saved to localStorage:", updatedVideoList);
-
-    setVideoName("");
-    setVideoURL("");
+    toast.success("Video successfully added!");
+    reset();
     setIsModalOpen(false);
     onClose();
+  };
+
+  const getYouTubeVideoId = (url: string) => {
+    try {
+      return (
+        new URL(url).searchParams.get("v") ||
+        url.split("/").pop()?.split("?")[0]
+      );
+    } catch {
+      return "";
+    }
   };
 
   return (
     <>
       {isModalOpen && (
         <BaseModal onClose={onClose}>
-          <form onSubmit={handleSubmit} className={css.form}>
+          <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
             <h2>Add new video</h2>
 
             <label className={css.label}>
-              Video name:
+              <p>Name:</p>
               <input
                 type="text"
-                name="name"
-                value={videoName}
-                onChange={handleNameChange}
                 className={css.input}
-                placeholder="My video name"
-                required
+                placeholder="Video name"
+                defaultValue=""
+                {...register("name", {
+                  required: "Please enter a video name.",
+                })}
               />
+              {errors.name && (
+                <div className={css.errorWrapper}>
+                  {errors.name && (
+                    <p className={css.error}>{errors.name.message}</p>
+                  )}
+                </div>
+              )}
             </label>
 
             <label className={css.label}>
-              Video URL:
+              <p>Video URL:</p>
               <input
                 type="url"
-                name="url"
-                value={videoURL}
                 placeholder="https://www.youtube.com/watch?v=VIDEO_ID"
-                onChange={handleURLChange}
                 className={css.input}
-                required
+                defaultValue=""
+                {...register("url", {
+                  required: "Please enter a video URL.",
+                  pattern: {
+                    value: /^(https?:\/\/|data:video\/)/i,
+                    message: "Please enter a valid video URL.",
+                  },
+                })}
               />
+              <div className={css.errorWrapper}>
+                {errors.url && (
+                  <p className={css.error}>{errors.url.message}</p>
+                )}
+              </div>
+            </label>
+
+            <label className={css.label}>
+              <p>Poster URL:</p>
+              <input
+                type="url"
+                className={css.input}
+                placeholder="Video poster URL"
+                value={posterURL || ""}
+                {...register("poster", {
+                  // required: "Please enter a video poster URL.",
+                  pattern: {
+                    value: /^https?:\/\/.+$/i,
+                    message: "Enter a valid image URL",
+                  },
+                })}
+              />
+              {errors.poster && (
+                <div className={css.errorWrapper}>
+                  {errors.poster && (
+                    <p className={css.error}>{errors.poster.message}</p>
+                  )}
+                </div>
+              )}
             </label>
 
             {videoURL && (
               <div className={css.videoPreview}>
-                <video src={videoURL} controls width="100%" height="200">
-                  Your browser does not support the video tag.
-                </video>
+                {videoURL.includes("youtube.com") ||
+                videoURL.includes("youtu.be") ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${getYouTubeVideoId(
+                      videoURL
+                    )}`}
+                    title="YouTube video preview"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  />
+                ) : (
+                  <video
+                    src={videoURL}
+                    poster={posterURL || undefined}
+                    controls
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                )}
               </div>
             )}
 

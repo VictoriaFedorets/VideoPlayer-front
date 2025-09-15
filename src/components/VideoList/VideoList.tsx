@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function VideoList() {
   const dispatch = useAppDispatch();
-  const videos = useAppSelector(selectVideos);
   const navigate = useNavigate();
+  const videos = useAppSelector(selectVideos);
 
   const getYouTubeThumbnail = (url: string) => {
     try {
@@ -24,9 +24,9 @@ export default function VideoList() {
 
       return videoId
         ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
-        : null;
+        : "/placeholder.png";
     } catch {
-      return null;
+      return "/placeholder.png";
     }
   };
 
@@ -62,14 +62,23 @@ export default function VideoList() {
               <h4>{video.name}</h4>
 
               {video.type === "local" || video.url.endsWith(".mp4") ? (
-                <video preload="metadata" poster={video.poster || undefined}>
+                <video
+                  preload="metadata"
+                  poster={video.poster || "/placeholder.png"}
+                  onError={(e) => {
+                    e.currentTarget.poster = "/placeholder.png";
+                  }}
+                >
                   <source src={video.url} type="video/mp4" />
                 </video>
               ) : video.url.includes("youtube.com") ||
                 video.url.includes("youtu.be") ? (
                 <img
-                  src={getYouTubeThumbnail(video.url) || undefined}
+                  src={getYouTubeThumbnail(video.url) || "/placeholder.png"}
                   alt="poster video"
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.png";
+                  }}
                 />
               ) : (
                 <div className={css.externalVideo}>

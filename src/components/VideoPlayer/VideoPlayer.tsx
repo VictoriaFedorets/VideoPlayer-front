@@ -43,6 +43,10 @@ export default function VideoPlayer({ name, src }: VideoPlayerProps) {
   return (
     <div className={css.videoConteiner}>
       <h2>{name}</h2>
+      <>
+        {/* <DeleteVideoBtn id={id} /> */}
+        {/* <EditVideoBtn id={id} name={name} url={src} /> */}
+      </>
       <video
         autoPlay
         className={css.video}

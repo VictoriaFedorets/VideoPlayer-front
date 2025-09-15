@@ -1,19 +1,11 @@
 import { useState } from "react";
 import BaseModal from "@components/BaseModal/BaseModal";
 import css from "./AddVideoForm.module.css";
-import { saveVideoToLS } from "redux/videos/videosOperations";
-import { useAppDispatch } from "redux/hooks";
-import { v4 as uuidv4 } from "uuid";
+import { addVideoToLS } from "redux/videos/videosOperations";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { toast } from "react-toastify";
 import { useForm, SubmitHandler } from "react-hook-form";
-
-interface VideoData {
-  id: string;
-  name: string;
-  url: string;
-  poster?: string;
-  type: "local" | "external";
-}
+import { selectStatus } from "redux/videos/videosSelectors";
 
 interface VideoFormProps {
   onClose: () => void;
@@ -28,6 +20,7 @@ interface VideoFormInputs {
 export default function AddVideoForm({ onClose }: VideoFormProps) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const dispatch = useAppDispatch();
+  const status = useAppSelector(selectStatus);
 
   const {
     register,
@@ -41,17 +34,13 @@ export default function AddVideoForm({ onClose }: VideoFormProps) {
   const posterURL = watch("poster");
 
   const onSubmit: SubmitHandler<VideoFormInputs> = (data) => {
-    const type = data.url.startsWith("http") ? "external" : "local";
-
-    const videoData: VideoData = {
-      id: uuidv4(),
-      name: data.name.trim(),
-      url: data.url.trim(),
-      poster: data.poster?.trim(),
-      type,
-    };
-
-    dispatch(saveVideoToLS(videoData));
+    dispatch(
+      addVideoToLS({
+        name: data.name.trim(),
+        url: data.url.trim(),
+        poster: data.poster?.trim(),
+      })
+    );
 
     toast.success("Video successfully added!");
     reset();
@@ -63,7 +52,8 @@ export default function AddVideoForm({ onClose }: VideoFormProps) {
     try {
       return (
         new URL(url).searchParams.get("v") ||
-        url.split("/").pop()?.split("?")[0]
+        url.split("/").pop()?.split("?")[0] ||
+        ""
       );
     } catch {
       return "";
@@ -83,16 +73,13 @@ export default function AddVideoForm({ onClose }: VideoFormProps) {
                 type="text"
                 className={css.input}
                 placeholder="Video name"
-                defaultValue=""
                 {...register("name", {
                   required: "Please enter a video name.",
                 })}
               />
               {errors.name && (
                 <div className={css.errorWrapper}>
-                  {errors.name && (
-                    <p className={css.error}>{errors.name.message}</p>
-                  )}
+                  <p className={css.error}>{errors.name.message}</p>
                 </div>
               )}
             </label>
@@ -103,7 +90,6 @@ export default function AddVideoForm({ onClose }: VideoFormProps) {
                 type="url"
                 placeholder="https://www.youtube.com/watch?v=VIDEO_ID"
                 className={css.input}
-                defaultValue=""
                 {...register("url", {
                   required: "Please enter a video URL.",
                   pattern: {
@@ -112,11 +98,11 @@ export default function AddVideoForm({ onClose }: VideoFormProps) {
                   },
                 })}
               />
-              <div className={css.errorWrapper}>
-                {errors.url && (
+              {errors.url && (
+                <div className={css.errorWrapper}>
                   <p className={css.error}>{errors.url.message}</p>
-                )}
-              </div>
+                </div>
+              )}
             </label>
 
             <label className={css.label}>
@@ -127,7 +113,6 @@ export default function AddVideoForm({ onClose }: VideoFormProps) {
                 placeholder="Video poster URL"
                 value={posterURL || ""}
                 {...register("poster", {
-                  // required: "Please enter a video poster URL.",
                   pattern: {
                     value: /^https?:\/\/.+$/i,
                     message: "Enter a valid image URL",
@@ -136,9 +121,7 @@ export default function AddVideoForm({ onClose }: VideoFormProps) {
               />
               {errors.poster && (
                 <div className={css.errorWrapper}>
-                  {errors.poster && (
-                    <p className={css.error}>{errors.poster.message}</p>
-                  )}
+                  <p className={css.error}>{errors.poster.message}</p>
                 </div>
               )}
             </label>
@@ -167,8 +150,12 @@ export default function AddVideoForm({ onClose }: VideoFormProps) {
               </div>
             )}
 
-            <button type="submit" className={css.btn}>
-              Save
+            <button
+              type="submit"
+              className={css.btn}
+              disabled={status === "loading"}
+            >
+              {status === "loading" ? "Saving..." : "Save"}
             </button>
           </form>
         </BaseModal>

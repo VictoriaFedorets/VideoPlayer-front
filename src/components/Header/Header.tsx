@@ -2,7 +2,7 @@ import Plus from "icons/Plus";
 import css from "./Header.module.css";
 import { useState } from "react";
 import AddVideoForm from "@components/AddVideoForm/AddVideoForm";
-import LogoImg from "../images/Vid.png";
+import LogoImg from "../images/Logo.png";
 import { Link } from "react-router-dom";
 import { addVideoToLS } from "redux/videos/videosOperations";
 import { useAppDispatch } from "redux/hooks";

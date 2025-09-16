@@ -1,5 +1,4 @@
 .editBtn {
-  color: #ffffff;
   width: 25px;
   height: 25px;
   border-radius: 8px;
@@ -9,8 +8,7 @@
   flex-shrink: 0;
   justify-content: center;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 6px 14px rgba(92, 90, 90, 0.3),
-    0 4px 8px rgba(224, 221, 221, 0.055);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .editBtn:hover,
@@ -20,11 +18,11 @@
 
 .iconEdit {
   width: 15px;
-  fill: #aaa7a7;
+  fill: rgb(60, 161, 60);
 }
 
 .editBtn:hover .iconEdit {
-  fill: #ffffff;
+  fill: #10c409;
 }
 
 @media screen and (min-width: 768px) {

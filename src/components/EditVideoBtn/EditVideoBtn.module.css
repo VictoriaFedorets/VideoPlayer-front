@@ -1,9 +1,9 @@
-.deleteBtn {
+.editBtn {
+  color: #ffffff;
   width: 25px;
   height: 25px;
   border-radius: 8px;
   border: 1px solid rgb(32, 32, 32);
-  color: #ffffff;
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -13,38 +13,38 @@
     0 4px 8px rgba(224, 221, 221, 0.055);
 }
 
-.deleteBtn:hover,
-.deleteBtn.active {
+.editBtn:hover,
+.editBtn.active {
   transform: scale(1.05);
 }
 
-.iconBasket {
+.iconEdit {
   width: 15px;
-  stroke: #aaa7a7;
+  fill: #aaa7a7;
 }
 
-.deleteBtn:hover .iconBasket {
-  stroke: #ffffff;
+.editBtn:hover .iconEdit {
+  fill: #ffffff;
 }
 
 @media screen and (min-width: 768px) {
-  .deleteBtn {
+  .editBtn {
     width: 30px;
     height: 30px;
   }
 
-  .iconBasket {
+  .iconEdit {
     width: 18px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .deleteBtn {
+  .editBtn {
     width: 50px;
     height: 50px;
   }
 
-  .iconBasket {
+  .iconEdit {
     width: 25px;
   }
 }

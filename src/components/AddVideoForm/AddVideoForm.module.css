@@ -49,6 +49,11 @@
   padding: 14px;
   border: 1px solid rgba(38, 38, 38, 0.15);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .videoPreview {
@@ -82,5 +87,12 @@ iframe {
   video,
   iframe {
     height: 247px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  video,
+  iframe {
+    height: 370px;
   }
 }

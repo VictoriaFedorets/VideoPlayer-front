@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BaseModal from "@components/BaseModal/BaseModal";
 import css from "./AddVideoForm.module.css";
 import { addVideoToLS } from "redux/videos/videosOperations";
@@ -9,6 +9,10 @@ import { selectStatus } from "redux/videos/videosSelectors";
 
 interface VideoFormProps {
   onClose: () => void;
+  onSubmit: (data: VideoFormInputs) => void;
+  initialValues?: VideoFormInputs;
+  title?: string;
+  submitText?: string;
 }
 
 interface VideoFormInputs {
@@ -17,9 +21,14 @@ interface VideoFormInputs {
   poster?: string;
 }
 
-export default function AddVideoForm({ onClose }: VideoFormProps) {
+export default function AddVideoForm({
+  onClose,
+  onSubmit,
+  title = "Add new video",
+  submitText = "Save",
+  initialValues,
+}: VideoFormProps) {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const dispatch = useAppDispatch();
   const status = useAppSelector(selectStatus);
 
   const {
@@ -28,25 +37,34 @@ export default function AddVideoForm({ onClose }: VideoFormProps) {
     watch,
     reset,
     formState: { errors },
-  } = useForm<VideoFormInputs>();
+  } = useForm<VideoFormInputs>({
+    defaultValues: initialValues || { name: "", url: "", poster: "" },
+  });
 
   const videoURL = watch("url");
   const posterURL = watch("poster");
 
-  const onSubmit: SubmitHandler<VideoFormInputs> = (data) => {
-    dispatch(
-      addVideoToLS({
-        name: data.name.trim(),
-        url: data.url.trim(),
-        poster: data.poster?.trim(),
-      })
-    );
+  const handleFormSubmit: SubmitHandler<VideoFormInputs> = (data) => {
+    // dispatch(
+    //   addVideoToLS({
+    //     name: data.name.trim(),
+    //     url: data.url.trim(),
+    //     poster: data.poster?.trim(),
+    //   })
+    // );
+    onSubmit(data);
+    toast.success(`Video successfully ${initialValues ? "updated" : "added"}!`);
 
-    toast.success("Video successfully added!");
-    reset();
     setIsModalOpen(false);
     onClose();
   };
+
+  //поля будут заполнены корректно даже если данные приходят асинхронно
+  useEffect(() => {
+    if (initialValues) {
+      reset(initialValues);
+    }
+  }, [initialValues, reset]);
 
   const getYouTubeVideoId = (url: string) => {
     try {
@@ -64,8 +82,8 @@ export default function AddVideoForm({ onClose }: VideoFormProps) {
     <>
       {isModalOpen && (
         <BaseModal onClose={onClose}>
-          <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-            <h2>Add new video</h2>
+          <form onSubmit={handleSubmit(handleFormSubmit)} className={css.form}>
+            <h2>{title}</h2>
 
             <label className={css.label}>
               <p>Name:</p>
@@ -155,7 +173,7 @@ export default function AddVideoForm({ onClose }: VideoFormProps) {
               className={css.btn}
               disabled={status === "loading"}
             >
-              {status === "loading" ? "Saving..." : "Save"}
+              {status === "loading" ? "Saving..." : submitText}
             </button>
           </form>
         </BaseModal>

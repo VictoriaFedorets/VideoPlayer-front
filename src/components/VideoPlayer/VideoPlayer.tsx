@@ -1,18 +1,36 @@
 import { useEffect, useRef, useState } from "react";
 import Controls from "@components/Controls/Controls";
 import css from "./VideoPlayer.module.css";
+import DeleteVideoBtn from "@components/DeleteVideoBtn/DeleteVideoBtn";
+import EditVideoBtn from "@components/EditVideoBtn/EditVideoBtn";
+import { useAppSelector } from "redux/hooks";
+import { selectVideos } from "redux/videos/videosSelectors";
 
 interface VideoPlayerProps {
+  id: string;
   name: string;
   src: string;
+  poster?: string;
 }
 
-export default function VideoPlayer({ name, src }: VideoPlayerProps) {
+export default function VideoPlayer({
+  id,
+  name,
+  src,
+  poster,
+}: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const controlsRef = useRef<HTMLDivElement>(null);
 
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+
+  const videos = useAppSelector(selectVideos);
+  const updatedVideo = videos.find((v) => v.id === id);
+
+  const finalName = updatedVideo?.name || name;
+  const finalSrc = updatedVideo?.url || src;
+  const finalPoster = updatedVideo?.poster || poster;
 
   const handleTimeUpdate = () => {
     if (videoRef.current) {
@@ -42,16 +60,25 @@ export default function VideoPlayer({ name, src }: VideoPlayerProps) {
 
   return (
     <div className={css.videoConteiner}>
-      <h2>{name}</h2>
-      <>
-        {/* <DeleteVideoBtn id={id} /> */}
-        {/* <EditVideoBtn id={id} name={name} url={src} /> */}
-      </>
+      <div className={css.titleContainer}>
+        <h2>{finalName}</h2>
+        <div className={css.titleBtnContainer}>
+          <EditVideoBtn
+            id={id}
+            name={finalName}
+            url={finalSrc}
+            poster={finalPoster}
+          />
+          <DeleteVideoBtn id={id} />
+        </div>
+      </div>
+
       <video
-        autoPlay
+        // autoPlay
         className={css.video}
         ref={videoRef}
-        src={src}
+        src={finalSrc}
+        poster={finalPoster || undefined}
         preload="metadata"
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}

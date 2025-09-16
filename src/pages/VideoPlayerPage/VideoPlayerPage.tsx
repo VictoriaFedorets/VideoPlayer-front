@@ -10,7 +10,12 @@ export default function VideoPlayerPage() {
   return (
     <>
       <Header />
-      <VideoPlayer src={video.url} name={video.name} />
+      <VideoPlayer
+        src={video.url}
+        name={video.name}
+        id={video.id}
+        poster={video.poster}
+      />
     </>
   );
 }

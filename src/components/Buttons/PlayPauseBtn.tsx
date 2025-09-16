@@ -8,7 +8,7 @@ export default function PlayPauseBtn({
 }: {
   videoRef: RefObject<HTMLVideoElement | null>;
 }) {
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const togglePlaying = () => {
     if (!videoRef.current) return;

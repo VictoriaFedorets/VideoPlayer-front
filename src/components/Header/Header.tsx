@@ -4,12 +4,31 @@ import { useState } from "react";
 import AddVideoForm from "@components/AddVideoForm/AddVideoForm";
 import LogoImg from "../images/Vid.png";
 import { Link } from "react-router-dom";
+import { addVideoToLS } from "redux/videos/videosOperations";
+import { useAppDispatch } from "redux/hooks";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useAppDispatch();
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const handleAddVideo = (data: {
+    name: string;
+    url: string;
+    poster?: string;
+  }) => {
+    dispatch(
+      addVideoToLS({
+        name: data.name.trim(),
+        url: data.url.trim(),
+        poster: data.poster?.trim(),
+      })
+    );
+    toast.success("Video successfully added!");
+  };
 
   return (
     <div className={css.conteinerHeader}>
@@ -21,7 +40,14 @@ export default function Header() {
         {""}add video
       </button>
 
-      {isModalOpen && <AddVideoForm onClose={closeModal} />}
+      {isModalOpen && (
+        <AddVideoForm
+          title="Add video"
+          submitText="Save"
+          onClose={closeModal}
+          onSubmit={handleAddVideo}
+        />
+      )}
     </div>
   );
 }

@@ -32,7 +32,6 @@ export default function BaseModal({
 
   const handleClose = () => {
     onClose();
-    navigate("/");
   };
 
   const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {

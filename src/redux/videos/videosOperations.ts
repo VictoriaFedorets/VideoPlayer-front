@@ -9,6 +9,14 @@ interface AddVideoPayload {
   poster?: string;
 }
 
+export interface UpdateVideoPayload {
+  id: string;
+  name: string;
+  url: string;
+  poster?: string;
+  type?: "local" | "external";
+}
+
 // завантажуємо з лок стор
 export const loadVideosFromLS = createAsyncThunk(
   "videos/loadVideos",
@@ -42,5 +50,31 @@ export const deleteVideoToLS = createAsyncThunk(
     const updated = saved.filter((video) => video.id !== id);
     setVideos(updated);
     return id;
+  }
+);
+
+export const updateVideoToLS = createAsyncThunk(
+  "videos/updateVideo",
+  async (payload: UpdateVideoPayload) => {
+    const saved = getVideos();
+    // console.log(saved);
+
+    const updated = saved.map((video) =>
+      video.id === payload.id
+        ? {
+            ...video,
+            name: payload.name,
+            url: payload.url,
+            poster: payload.poster,
+          }
+        : video
+    );
+    setVideos(updated);
+
+    // const updatedVideo = updated.find((v) => v.id === payload.id);
+    // console.log("Updated video only:", updatedVideo);
+    // console.log("Updated video:", updated);
+
+    return payload;
   }
 );

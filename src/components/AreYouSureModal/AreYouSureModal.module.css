@@ -1,0 +1,72 @@
+.modalContainer {
+  max-width: 370px;
+}
+
+.modalContainer .title {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  margin-right: 0;
+  color: #fbbc05;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btnYes,
+.btnNo {
+  border-radius: 30px;
+  padding: 12px 0;
+  width: 100px;
+
+  height: auto;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.btnYes {
+  background: #fbbc05;
+  color: white;
+}
+
+.btnNo {
+  background: rgba(38, 38, 38, 0.05);
+  color: black;
+}
+
+.btnYes:hover,
+.btnYes:focus {
+  background-color: #eca31b;
+  transform: scale(1.05);
+}
+
+.btnNo:hover,
+.btnNo:focus {
+  background: rgba(10, 10, 10, 0.103);
+  transform: scale(1.05);
+}
+
+@media screen and (min-width: 768px) {
+  .modalContainer {
+    max-width: 450px;
+    width: 450px;
+  }
+
+  .btnContainer {
+    gap: 30px;
+  }
+
+  .btnYes,
+  .btnNo {
+    width: 130px;
+  }
+}

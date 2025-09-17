@@ -66,6 +66,7 @@ export const updateVideoToLS = createAsyncThunk(
             name: payload.name,
             url: payload.url,
             poster: payload.poster,
+            type: video.type,
           }
         : video
     );
@@ -75,6 +76,7 @@ export const updateVideoToLS = createAsyncThunk(
     // console.log("Updated video only:", updatedVideo);
     // console.log("Updated video:", updated);
 
-    return payload;
+    const updatedVideo = updated.find((v) => v.id === payload.id)!;
+    return updatedVideo;
   }
 );

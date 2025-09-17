@@ -4,7 +4,6 @@ import {
   addVideoToLS,
   deleteVideoToLS,
   updateVideoToLS,
-  UpdateVideoPayload,
 } from "./videosOperations";
 
 export interface VideoData {
@@ -19,16 +18,12 @@ interface VideosState {
   items: VideoData[];
   status: "idle" | "loading" | "failed";
   error: string | null;
-  deleteStatus: "idle" | "loading" | "failed";
-  updateStatus: "idle" | "loading" | "failed";
 }
 
 const initialState: VideosState = {
   items: [],
   status: "idle",
   error: null,
-  deleteStatus: "idle",
-  updateStatus: "idle",
 };
 
 const videosSlice = createSlice({
@@ -39,6 +34,7 @@ const videosSlice = createSlice({
     builder
       .addCase(loadVideosFromLS.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(
         loadVideosFromLS.fulfilled,
@@ -47,21 +43,32 @@ const videosSlice = createSlice({
           state.status = "idle";
         }
       )
-      .addCase(loadVideosFromLS.rejected, (state) => {
+      .addCase(loadVideosFromLS.rejected, (state, action) => {
         state.status = "failed";
+        state.error = action.error?.message || "Failed to load videos";
       })
 
       // add video
+      .addCase(addVideoToLS.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
       .addCase(
         addVideoToLS.fulfilled,
         (state, action: PayloadAction<VideoData>) => {
           state.items.push(action.payload);
+          state.status = "idle";
         }
       )
+      .addCase(addVideoToLS.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error?.message || "Failed to add video";
+      })
 
       // delete video
       .addCase(deleteVideoToLS.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(
         deleteVideoToLS.fulfilled,
@@ -69,28 +76,30 @@ const videosSlice = createSlice({
           state.items = state.items.filter(
             (video) => video.id !== action.payload
           );
+          state.status = "idle";
         }
       )
       .addCase(deleteVideoToLS.rejected, (state, action) => {
-        state.status = "idle";
+        state.status = "failed";
         state.error = action.error.message || "Error deleting video";
       })
 
       // update video
       .addCase(updateVideoToLS.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(
         updateVideoToLS.fulfilled,
         (state, action: PayloadAction<VideoData>) => {
-          state.status = "idle";
           state.items = state.items.map((video) =>
             video.id === action.payload.id ? action.payload : video
           );
+          state.status = "idle";
         }
       )
       .addCase(updateVideoToLS.rejected, (state, action) => {
-        state.status = "idle";
+        state.status = "failed";
         state.error = action.error.message || "Error updated video";
       });
   },

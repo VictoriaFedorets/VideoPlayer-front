@@ -158,7 +158,7 @@ export default function AddVideoForm({
                 ) : (
                   <video
                     src={videoURL}
-                    poster={posterURL || "/public/placeholder.png"}
+                    poster={posterURL || "/placeholder.png"}
                     controls
                   >
                     Your browser does not support the video tag.

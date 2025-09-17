@@ -26,7 +26,7 @@ export const useVideoListPaginated = ({
     const initialVideos = videos.slice(0, perPage);
     setVisibleVideos(initialVideos);
 
-    // тут важно — сравниваем сколько реально загрузили, а не просто длину массива
+    // порівнюємо скільки реально завантажили
     setShowMore(initialVideos.length < videos.length);
   }, [videos, perPage]);
 
@@ -34,9 +34,9 @@ export const useVideoListPaginated = ({
     if (loading || !showMore) return;
 
     const startVideos = visibleVideos.length;
-    console.log(startVideos);
+    // console.log(startVideos);
     const nextVideos = videos.slice(startVideos, startVideos + perPage);
-    console.log(nextVideos);
+    // console.log(nextVideos);
 
     if (nextVideos.length === 0) {
       setShowMore(false);
@@ -49,7 +49,7 @@ export const useVideoListPaginated = ({
 
     setVisibleVideos((prev) => [...prev, ...nextVideos]);
 
-    // залишились ли ще?
+    // залишились ли ще відео?
     const isLastPage = startVideos + nextVideos.length >= videos.length;
     setShowMore(!isLastPage);
 

@@ -1,0 +1,48 @@
+.deleteBtn {
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  border: 1px solid rgb(32, 32, 32);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.deleteBtn:hover,
+.deleteBtn.active {
+  transform: scale(1.05);
+}
+
+.iconBasket {
+  width: 15px;
+  stroke: #d43030;
+}
+
+.deleteBtn:hover .iconBasket {
+  stroke: #f00101;
+}
+
+@media screen and (min-width: 768px) {
+  .deleteBtn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .iconBasket {
+    width: 18px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .deleteBtn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .iconBasket {
+    width: 25px;
+  }
+}

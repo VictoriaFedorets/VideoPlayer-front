@@ -26,10 +26,25 @@
   /* max-width: 480px; */
 }
 
+.containerTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 video {
   height: 210px;
   height: auto;
   /* max-width: 480px; */
+}
+
+.previewWrapper {
+  margin-top: 10px;
+}
+
+.showMoreMessage {
+  text-align: "center";
+  margin-top: 20px;
 }
 
 @media screen and (min-width: 768px) {

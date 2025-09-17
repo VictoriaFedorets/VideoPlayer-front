@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import BaseModal from "@components/BaseModal/BaseModal";
 import css from "./AddVideoForm.module.css";
-import { addVideoToLS } from "redux/videos/videosOperations";
-import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { useAppSelector } from "redux/hooks";
 import { toast } from "react-toastify";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { selectStatus } from "redux/videos/videosSelectors";
@@ -159,7 +158,7 @@ export default function AddVideoForm({
                 ) : (
                   <video
                     src={videoURL}
-                    poster={posterURL || undefined}
+                    poster={posterURL || "/public/placeholder.png"}
                     controls
                   >
                     Your browser does not support the video tag.

@@ -7,19 +7,27 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import AreYouSureModal from "@components/AreYouSureModal/AreYouSureModal";
 
-export default function DeleteVideoBtn({ id }: { id: string }) {
+interface DeleteVideoBtnProps {
+  id: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export default function DeleteVideoBtn({ id }: DeleteVideoBtnProps) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOpenModal = () => setIsModalOpen(true);
+  const handleOpenModal = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsModalOpen(true);
+  };
+
   const handleCloseModal = () => setIsModalOpen(false);
 
   const handleConfirmDelete = () => {
     dispatch(deleteVideoToLS(id)).then(() => {
       toast.success("Video has been deleted!");
-      handleCloseModal();
       navigate("/");
     });
   };

@@ -27,7 +27,6 @@ export default function Header() {
         poster: data.poster?.trim(),
       })
     );
-    toast.success("Video successfully added!");
   };
 
   return (

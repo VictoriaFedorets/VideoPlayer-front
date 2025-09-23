@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import Controls from "@components/Controls/Controls";
+import Controls from "@pages/VideoPlayerPage/components/Controls/Controls";
 import css from "./VideoPlayer.module.css";
-import DeleteVideoBtn from "@components/DeleteVideoBtn/DeleteVideoBtn";
-import EditVideoBtn from "@components/EditVideoBtn/EditVideoBtn";
+import DeleteVideoBtn from "@pages/HomePage/components/VideoList/DeleteVideoBtn/DeleteVideoBtn";
+import EditVideoBtn from "@pages/HomePage/components/EditVideoBtn/EditVideoBtn";
 import { useAppSelector } from "redux/hooks";
 import { selectVideos } from "redux/videos/videosSelectors";
 

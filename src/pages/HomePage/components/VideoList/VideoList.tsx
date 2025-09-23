@@ -5,7 +5,7 @@ import { selectVideos } from "redux/videos/videosSelectors";
 import css from "./VideoList.module.css";
 import { VideoData } from "redux/videos/videosSlice";
 import { useNavigate } from "react-router-dom";
-import DeleteVideoBtn from "@components/DeleteVideoBtn/DeleteVideoBtn";
+import DeleteVideoBtn from "@pages/HomePage/components/VideoList/DeleteVideoBtn/DeleteVideoBtn";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useVideoListPaginated } from "./hooks/useVideoList";
 

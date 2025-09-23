@@ -1,7 +1,7 @@
 import { RefObject, useEffect, useState } from "react";
 import VolumeOff from "icons/VolumeOff";
 import VolumeOn from "icons/VolumeOn";
-import css from "@components/Buttons/Buttons.module.css";
+import css from "./Buttons.module.css";
 
 export default function VolumeControlBtn({
   videoRef,

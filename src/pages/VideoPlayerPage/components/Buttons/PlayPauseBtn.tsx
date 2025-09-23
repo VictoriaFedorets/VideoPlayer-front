@@ -1,7 +1,7 @@
 import { RefObject, useState } from "react";
 import Play from "icons/Play";
 import Pause from "icons/Pause";
-import css from "@components/Buttons/Buttons.module.css";
+import css from "./Buttons.module.css";
 
 export default function PlayPauseBtn({
   videoRef,

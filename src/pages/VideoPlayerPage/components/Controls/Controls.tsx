@@ -1,8 +1,8 @@
-import FullScreenBtn from "@components/Buttons/FullScreenBtn";
-import PlayPauseBtn from "@components/Buttons/PlayPauseBtn";
-import VolumeControlBtn from "@components/Buttons/VolumeControlBtn";
-import Timeline from "@components/Timeline/Timeline";
-import SpeedBtn from "@components/Buttons/SpeedBtn";
+import FullScreenBtn from "@pages/VideoPlayerPage/components/Buttons/FullScreenBtn";
+import PlayPauseBtn from "@pages/VideoPlayerPage/components/Buttons/PlayPauseBtn";
+import VolumeControlBtn from "@pages/VideoPlayerPage/components/Buttons/VolumeControlBtn";
+import Timeline from "@pages/VideoPlayerPage/components/Timeline/Timeline";
+import SpeedBtn from "@pages/VideoPlayerPage/components/Buttons/SpeedBtn";
 import { RefObject } from "react";
 import css from "./Controls.module.css";
 

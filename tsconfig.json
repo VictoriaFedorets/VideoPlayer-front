@@ -15,13 +15,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["react"],
+    "types": ["react", "react-dom"],
 
     "baseUrl": "src",
     "paths": {
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
-      "@redux/": ["redux"],
+      "@redux/": ["redux/*"],
       "@assets/*": ["assets/*"],
       "@services/*": ["services/*"]
     }

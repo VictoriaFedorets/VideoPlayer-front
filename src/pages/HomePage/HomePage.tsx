@@ -5,7 +5,6 @@ import VideoList from "@pages/HomePage/components/VideoList/VideoList";
 export default function HomePage() {
   return (
     <section className={css.containerHome}>
-      <Header />
       <VideoList />
     </section>
   );

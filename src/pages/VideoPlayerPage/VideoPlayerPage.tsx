@@ -1,4 +1,3 @@
-import Header from "@components/Header/Header";
 import VideoPlayer from "@pages/VideoPlayerPage/components/VideoPlayer/VideoPlayer";
 import { useLocation } from "react-router-dom";
 import { VideoData } from "redux/videos/videosSlice";
@@ -9,7 +8,6 @@ export default function VideoPlayerPage() {
 
   return (
     <>
-      <Header />
       <VideoPlayer
         src={video.url}
         name={video.name}

@@ -9,13 +9,13 @@ const HomePage = lazy(() => import("@pages/HomePage/HomePage"));
 const VideoPlayerPage = lazy(
   () => import("@pages/VideoPlayerPage/VideoPlayerPage")
 );
-// const LoginPage = lazy(() => import("@pages/LoginPage/LoginPage"));
 const RegistrarionPage = lazy(
   () => import("@pages/RegistrarionPage/RegistrarionPage")
 );
 const ConfirmEmailPage = lazy(
   () => import("@pages/ConfirmEmailPage/ConfirmEmailPage")
 );
+const LoginPage = lazy(() => import("@pages/LoginPage/LoginPage"));
 
 export default function App() {
   return (
@@ -37,7 +37,7 @@ export default function App() {
             <Route path="videoPlayer" element={<VideoPlayerPage />} />
             <Route path="register" element={<RegistrarionPage />} />
             <Route path="/confirm-email" element={<ConfirmEmailPage />} />
-            {/* <Route path="login" element={<LoginPage />} /> */}
+            <Route path="login" element={<LoginPage />} />
           </Route>
         </Routes>
       </Suspense>

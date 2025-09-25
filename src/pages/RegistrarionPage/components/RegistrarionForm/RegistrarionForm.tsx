@@ -76,7 +76,7 @@ export default function RegistrationForm() {
   return (
     <div className={css.containerForm}>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-        <h2 className={css.title}>Sign Up</h2>
+        <h2 className={css.title}>Registration</h2>
 
         {/* Name */}
         <label className={css.label}>
@@ -181,13 +181,16 @@ export default function RegistrationForm() {
         </label>
 
         <button type="submit" className={css.button}>
-          {isLoading ? <Loader /> : "Sign up"}
+          {isLoading ? <Loader /> : "Registration"}
         </button>
       </form>
 
-      <Link className={css.link} to="/login">
-        Registration
-      </Link>
+      <p>
+        Already have an account?{" "}
+        <Link className={css.link} to="/login">
+          Login
+        </Link>
+      </p>
     </div>
   );
 }

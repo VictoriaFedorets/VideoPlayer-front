@@ -4,7 +4,7 @@ import { authAPI } from "@services/apiConfig";
 import { toast } from "react-toastify";
 
 interface UserRequestProps {
-  name: string;
+  name?: string;
   email: string;
   password: string;
 }
@@ -39,7 +39,7 @@ export const register = createAsyncThunk<
       "/auth/register",
       credentials
     );
-    toast(
+    toast.success(
       "Registration is successful. Please confirm your email via your mailbox!"
     );
     return data;
@@ -49,8 +49,8 @@ export const register = createAsyncThunk<
     if (axios.isAxiosError(error)) {
       message = error.response?.data?.message || message;
     }
+    toast.error(message);
 
-    toast(message);
     return thunkAPI.rejectWithValue(message);
   }
 });
@@ -66,7 +66,7 @@ export const confirmEmail = createAsyncThunk<
       "/auth/confirm-email",
       credentials
     );
-    toast("Email confirmed!");
+    toast.success("Email confirmed!");
     return data;
   } catch (error: unknown) {
     let message = "Email has not been confirmed";
@@ -75,7 +75,7 @@ export const confirmEmail = createAsyncThunk<
       message = error.response?.data?.message || message;
     }
 
-    toast(message);
+    toast.error(message);
     return thunkAPI.rejectWithValue(message);
   }
 });
@@ -91,7 +91,7 @@ export const login = createAsyncThunk<
       "/auth/login",
       credentials
     );
-    toast("Login successful!");
+    toast.success("Login successful!");
     return data;
   } catch (error: unknown) {
     let message = "Login failed";
@@ -100,7 +100,7 @@ export const login = createAsyncThunk<
       message = error.response?.data?.message || message;
     }
 
-    toast(message);
+    toast.error(message);
     return thunkAPI.rejectWithValue(message);
   }
 });
@@ -112,7 +112,7 @@ export const logout = createAsyncThunk<void, void, { rejectValue: string }>(
   async (_, thunkAPI) => {
     try {
       await authAPI.post("/auth/logout");
-      toast("You are logged out.");
+      toast.success("You are logged out.");
     } catch (error: unknown) {
       let message = "Logout failed";
 
@@ -120,7 +120,7 @@ export const logout = createAsyncThunk<void, void, { rejectValue: string }>(
         message = error.response?.data?.message || message;
       }
 
-      toast(message);
+      toast.error(message);
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -142,7 +142,7 @@ export const refresh = createAsyncThunk<
       message = error.response?.data?.message || message;
     }
 
-    toast(message);
+    toast.error(message);
     return thunkAPI.rejectWithValue(message);
   }
 });
@@ -178,14 +178,14 @@ export const sendResetPasswordEmail = createAsyncThunk<
       "/auth/send-reset-email",
       payload
     );
-    toast("Reset password email sent!");
+    toast.success("Reset password email sent!");
     return data;
   } catch (error: unknown) {
     let message = "Failed to send reset email";
     if (axios.isAxiosError(error)) {
       message = error.response?.data?.message || message;
     }
-    toast(message);
+    toast.error(message);
     return thunkAPI.rejectWithValue(message);
   }
 });
@@ -201,14 +201,14 @@ export const resetPassword = createAsyncThunk<
       "/auth/reset-pwd",
       payload
     );
-    toast("Password successfully reset!");
+    toast.success("Password successfully reset!");
     return data;
   } catch (error: unknown) {
     let message = "Failed to reset password";
     if (axios.isAxiosError(error)) {
       message = error.response?.data?.message || message;
     }
-    toast(message);
+    toast.error(message);
     return thunkAPI.rejectWithValue(message);
   }
 });

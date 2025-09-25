@@ -6,11 +6,13 @@ import LogoImg from "../images/Logo.png";
 import { Link } from "react-router-dom";
 import { addVideoToLS } from "redux/videos/videosOperations";
 import { useAppDispatch } from "redux/hooks";
-import { toast } from "react-toastify";
+// import { selectIsLoggedIn } from "@redux/";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useAppDispatch();
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -31,13 +33,21 @@ export default function Header() {
 
   return (
     <div className={css.conteinerHeader}>
-      <Link to="/">
-        <img className={css.logo} src={LogoImg} alt="Logo" />
-      </Link>
-      <button onClick={openModal} className={css.btnPlus}>
-        <Plus className={css.iconPlus} />
-        {""}add video
-      </button>
+      <>
+        <Link to="/">
+          <img className={css.logo} src={LogoImg} alt="Logo" />
+        </Link>
+        <button onClick={openModal} className={css.btnPlus}>
+          <Plus className={css.iconPlus} />
+          {""}add video
+        </button>
+      </>
+      <>
+        {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
+        <Link to="/register" className={css.btnPlus}>
+          Registration
+        </Link>
+      </>
 
       {isModalOpen && (
         <AddVideoForm

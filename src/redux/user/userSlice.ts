@@ -30,6 +30,7 @@ const initialState: UserStateProps = {
   refreshToken: null,
   status: "idle",
   error: null,
+  isLoggedIn: false,
 };
 
 const userSlice = createSlice({

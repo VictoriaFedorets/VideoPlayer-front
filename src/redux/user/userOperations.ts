@@ -40,7 +40,7 @@ export const register = createAsyncThunk<
       credentials
     );
     toast(
-      "Registration is successful. Please confirm your email via your mailbox"
+      "Registration is successful. Please confirm your email via your mailbox!"
     );
     return data;
   } catch (error: unknown) {

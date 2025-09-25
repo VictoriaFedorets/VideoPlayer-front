@@ -22,7 +22,7 @@ const ConfirmEmailPage: React.FC = () => {
     try {
       await dispatch(confirmEmail({ token })).unwrap();
       setTimeout(() => {
-        navigate("/home");
+        navigate("/");
       }, 3000);
     } catch (error) {
       console.error(error);

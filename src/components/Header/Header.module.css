@@ -1,42 +1,92 @@
 .conteinerHeader {
+  padding: 20px 0 10px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #f3b133;
-  /* padding-bottom: 10px; */
-  /* background: linear-gradient(90deg, #837c7c, #474748); */
-  margin-bottom: 40px;
-}
-
-.btnPlus {
-  border: none;
-  padding: 8px 14px;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  justify-content: center;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  font-size: 12px;
-  color: #fff;
-  background: #f3b133;
-}
-
-.btnPlus:hover,
-.btnPlus:focus {
-  background-color: #eca31b;
-  transform: scale(1.05);
-}
-
-.iconPlus {
-  fill: aliceblue;
-  width: 15px;
-  margin-right: 10px;
+  margin-bottom: 20px;
 }
 
 .logo {
-  width: 150px;
-  height: 120px;
+  width: 140px;
+  height: 35px;
+}
+
+.logoWrapper,
+.btnPlus,
+.btnBlock {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .burgerBtn {
+    display: none;
+  }
+
+  .logoWrapper,
+  .btnPlus,
+  .btnBlock {
+    display: block;
+  }
+
+  .btnBlock {
+    display: flex;
+    gap: 10px;
+  }
+
+  /* .btnPlus {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    font-size: 12px;
+    color: #fff;
+  }
+
+  .btnPlus:hover,
+  .btnPlus:focus {
+    background-color: #f5a81b;
+    transform: scale(1.05);
+  }
+
+  .iconPlus {
+    fill: white;
+    width: 15px;
+  } */
+
+  .btnLogin,
+  .btnRegister {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #e9a21e;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: color 0.2s;
+    font-size: 16px;
+    height: 46px;
+  }
+
+  .btnLogin {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .btnLogin:hover,
+  .btnLogin:focus {
+    color: #f5a81b;
+    border: 1px solid #f5a81b;
+  }
+  .btnRegister:hover,
+  .btnRegister:focus {
+    transform: scale(1.01);
+    border-color: #f5a81b;
+  }
 }

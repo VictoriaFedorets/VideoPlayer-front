@@ -6,7 +6,6 @@
 
 .videoList h4 {
   margin-bottom: 5px;
-  color: #fbbc05;
 }
 
 .videoItem {
@@ -45,6 +44,17 @@ video {
 .showMoreMessage {
   text-align: "center";
   margin-top: 20px;
+}
+
+.welcome {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.catImg {
+  width: 30px;
+  height: 30px;
 }
 
 @media screen and (min-width: 768px) {

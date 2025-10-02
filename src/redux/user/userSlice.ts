@@ -22,6 +22,7 @@ export interface UserStateProps {
   refreshToken: string | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
+  isLoggedIn: boolean;
 }
 
 const initialState: UserStateProps = {
@@ -44,6 +45,7 @@ const userSlice = createSlice({
       state.user = null;
       state.accessToken = null;
       state.refreshToken = null;
+      state.isLoggedIn = false;
     });
 
     // --- confirmEmail.fulfilled ---
@@ -92,6 +94,13 @@ const userSlice = createSlice({
         state.user = action.payload.user;
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken ?? null;
+        state.isLoggedIn = !!action.payload.accessToken;
+        console.log(
+          "Login fulfilled:",
+          action.payload,
+          "isLoggedIn:",
+          state.isLoggedIn
+        );
       }
     );
 

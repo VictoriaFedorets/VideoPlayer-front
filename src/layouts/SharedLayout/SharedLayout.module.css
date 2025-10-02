@@ -12,7 +12,14 @@
 
 .section {
   width: 100%;
-  box-sizing: border-box;
+  min-height: calc(100vh - 112px);
+}
+
+.homeBg .section {
+  background-image: url("../../images/videocamera.png");
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
 }
 
 @media screen and (min-width: 768px) {

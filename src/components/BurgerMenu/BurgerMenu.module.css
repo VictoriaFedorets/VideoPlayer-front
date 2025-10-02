@@ -1,0 +1,126 @@
+.burgerWrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.burgerWrapper.open {
+  transform: translateX(0);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+  fill: #f5a81b;
+  transform: scale(1.01);
+}
+
+.menuContent {
+  width: 250px;
+  height: 100%;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 20px;
+  transition: background-color 0.25s, opacity 0.3s ease;
+}
+
+.btnPlus {
+  margin-top: 30px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.2s;
+  color: #fbbc05;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+}
+
+.btnPlus:hover,
+.btnPlus:focus {
+  font-size: 14px;
+  color: #f5a81b;
+  transform: scale(1.01);
+  border-color: #f5a81b;
+}
+
+.text {
+  margin-top: 100px;
+  text-align: center;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.iconPlus {
+  fill: white;
+  width: 15px;
+}
+
+.btnBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.btnLogin,
+.btnRegister {
+  width: 100%;
+  background-color: #e9a21e;
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: color 0.2s;
+  height: 46px;
+}
+
+.btnLogin {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btnLogin:hover,
+.btnLogin:focus {
+  color: #f5a81b;
+  border: 1px solid #f5a81b;
+}
+.btnRegister:hover,
+.btnRegister:focus {
+  transform: scale(1.01);
+  border-color: #f5a81b;
+}
+
+.btnBlock p {
+  color: white;
+  font-weight: 600;
+}

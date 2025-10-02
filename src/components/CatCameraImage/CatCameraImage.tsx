@@ -4,7 +4,7 @@ const CatCameraImage: React.FC = () => {
   return (
     <img
       className={css.img}
-      src="/src/components/images/cat-camera.png"
+      src="/src/images/cat-camera.png"
       alt="cat with videocamera"
     />
   );

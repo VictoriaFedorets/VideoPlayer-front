@@ -1,60 +1,50 @@
-import Plus from "icons/Plus";
 import css from "./Header.module.css";
 import { useState } from "react";
-import AddVideoForm from "@components/AddVideoForm/AddVideoForm";
-import LogoImg from "../images/Logo.png";
+import LogoImg from "../../images/logo.png";
 import { Link } from "react-router-dom";
-import { addVideoToLS } from "redux/videos/videosOperations";
-import { useAppDispatch } from "redux/hooks";
-// import { selectIsLoggedIn } from "@redux/";
+import BurgerMenu from "@components/BurgerMenu/BurgerMenu";
+import MenuIcon from "icons/Menu";
+
 import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/user/userSelectors";
+import LogOutBtn from "@components/LogOutBtn/LogOutBtn";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useAppDispatch();
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const handleAddVideo = (data: {
-    name: string;
-    url: string;
-    poster?: string;
-  }) => {
-    dispatch(
-      addVideoToLS({
-        name: data.name.trim(),
-        url: data.url.trim(),
-        poster: data.poster?.trim(),
-      })
-    );
-  };
+  const toggleBurger = () => setIsBurgerOpen(!isBurgerOpen);
+  const closeBurger = () => setIsBurgerOpen(false);
 
   return (
     <div className={css.conteinerHeader}>
-      <>
-        <Link to="/">
-          <img className={css.logo} src={LogoImg} alt="Logo" />
-        </Link>
-        <button onClick={openModal} className={css.btnPlus}>
-          <Plus className={css.iconPlus} />
-          {""}add video
-        </button>
-      </>
-      <>
-        {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
-        <Link to="/register" className={css.btnPlus}>
-          Registration
-        </Link>
-      </>
+      <Link to="/">
+        <img className={css.logo} src={LogoImg} alt="Logo" />
+      </Link>
 
-      {isModalOpen && (
-        <AddVideoForm
-          title="Add video"
-          submitText="Save"
-          onClose={closeModal}
-          onSubmit={handleAddVideo}
+      <div className={css.btnBlock}>
+        {isLoggedIn ? (
+          <LogOutBtn className={css.btnRegister} />
+        ) : (
+          <>
+            <Link to="/login" className={css.btnLogin}>
+              Login
+            </Link>
+            <Link to="/register" className={css.btnRegister}>
+              Registration
+            </Link>
+          </>
+        )}
+      </div>
+
+      <MenuIcon className={css.burgerBtn} onClick={toggleBurger} />
+      {isBurgerOpen && (
+        <BurgerMenu
+          openModal={openModal}
+          closeBurger={closeBurger}
+          isOpen={isBurgerOpen}
         />
       )}
     </div>

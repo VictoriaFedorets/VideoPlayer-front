@@ -53,7 +53,7 @@ export default function ScrollToTop(): ReactElement {
       <ArrowUp
         size={24}
         style={{
-          color: isHovered ? "var(--main-text)" : "none",
+          color: !isHovered ? "var(--main-text)" : "#fbbc05",
         }}
       />
     </button>

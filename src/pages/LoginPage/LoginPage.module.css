@@ -1,0 +1,21 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .section {
+    flex-direction: row;
+    gap: 10px;
+    align-items: start;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .section {
+    gap: 150px;
+  }
+}

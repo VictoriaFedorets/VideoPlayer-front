@@ -1,0 +1,48 @@
+.editBtn {
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  border: 1px solid rgb(32, 32, 32);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.editBtn:hover,
+.editBtn.active {
+  transform: scale(1.05);
+}
+
+.iconEdit {
+  width: 15px;
+  fill: rgb(60, 161, 60);
+}
+
+.editBtn:hover .iconEdit {
+  fill: #10c409;
+}
+
+@media screen and (min-width: 768px) {
+  .editBtn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .iconEdit {
+    width: 18px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .editBtn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .iconEdit {
+    width: 25px;
+  }
+}

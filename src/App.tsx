@@ -2,13 +2,20 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import SharedLayout from "layouts/SharedLayout/SharedLayout";
-import ScrollToTop from "@components/ScrollToTop/ScrollTo Top";
+import ScrollToTop from "@components/ScrollToTop/ScrollToTop";
+import Loader from "@components/Loader/Loader";
 
 const HomePage = lazy(() => import("@pages/HomePage/HomePage"));
 const VideoPlayerPage = lazy(
   () => import("@pages/VideoPlayerPage/VideoPlayerPage")
 );
-// const EditVideoPage = lazy(() => import("@pages/EditVideoPage/EditVideoPage"));
+const RegistrarionPage = lazy(
+  () => import("@pages/RegistrarionPage/RegistrarionPage")
+);
+const ConfirmEmailPage = lazy(
+  () => import("@pages/ConfirmEmailPage/ConfirmEmailPage")
+);
+const LoginPage = lazy(() => import("@pages/LoginPage/LoginPage"));
 
 export default function App() {
   return (
@@ -23,12 +30,14 @@ export default function App() {
         draggable
       />
       <ScrollToTop />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
             <Route path="videoPlayer" element={<VideoPlayerPage />} />
-            {/* <Route path="editVideo" element={<EditVideoPage />} /> */}
+            <Route path="register" element={<RegistrarionPage />} />
+            <Route path="/confirm-email" element={<ConfirmEmailPage />} />
+            <Route path="login" element={<LoginPage />} />
           </Route>
         </Routes>
       </Suspense>

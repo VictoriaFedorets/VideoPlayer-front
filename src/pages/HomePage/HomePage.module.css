@@ -1,13 +1,6 @@
 .containerHome {
-  /* margin-top: 50px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-}
-
-@media screen and (min-width: 768px) {
-}
-
-@media screen and (min-width: 1280px) {
+  padding-bottom: 30px;
 }

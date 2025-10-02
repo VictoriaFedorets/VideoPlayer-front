@@ -5,9 +5,11 @@ import { selectVideos } from "redux/videos/videosSelectors";
 import css from "./VideoList.module.css";
 import { VideoData } from "redux/videos/videosSlice";
 import { useNavigate } from "react-router-dom";
-import DeleteVideoBtn from "@components/DeleteVideoBtn/DeleteVideoBtn";
+import DeleteVideoBtn from "@pages/HomePage/components/VideoList/DeleteVideoBtn/DeleteVideoBtn";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useVideoListPaginated } from "./hooks/useVideoList";
+import VideoCamera from "/videocamera.png";
+import Cat from "/favicon.png";
 
 export default function VideoList() {
   const dispatch = useAppDispatch();
@@ -16,10 +18,6 @@ export default function VideoList() {
 
   const { visibleVideos, showMore, fetchMoreVideos, loading } =
     useVideoListPaginated({ videos, perPage: 9, delay: 2000 });
-
-  // const perPage_LOAD = 12;
-  // const [visibleVideos, setVisibleVideos] = useState<VideoData[]>([]);
-  // const [showMore, setShowMore] = useState(false);
 
   const getYouTubeThumbnail = (url: string) => {
     try {
@@ -76,7 +74,13 @@ export default function VideoList() {
   return (
     <>
       {visibleVideos.length === 0 ? (
-        <h4>No videos yet</h4>
+        <>
+          <h3 className={css.welcome}>
+            Welcome to VideoHub{" "}
+            <img className={css.catImg} src={Cat} alt="cat" />
+          </h3>
+          <p>Upload videos, create collections, and share with friends</p>
+        </>
       ) : (
         <InfiniteScroll
           dataLength={visibleVideos.length}

@@ -1,0 +1,57 @@
+.videoConteiner {
+  margin-top: 50px;
+  color: white;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleContainer h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  margin-right: 10px;
+}
+
+.titleBtnContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.video {
+  width: 100%;
+  max-width: 600px;
+  min-height: 150px;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  background-color: black;
+}
+
+@media screen and (min-width: 768px) {
+  .video {
+    min-height: 396px;
+    max-width: 900px;
+  }
+
+  .titleBtnContainer {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .videoConteiner {
+    margin-top: 100px;
+  }
+
+  .video {
+    height: 648px;
+    max-width: 1200px;
+  }
+}

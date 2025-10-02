@@ -1,0 +1,22 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  /* height: 100vh; */
+}
+
+@media screen and (min-width: 768px) {
+  .section {
+    flex-direction: row;
+    align-items: start;
+    gap: 10px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .section {
+    gap: 150px;
+  }
+}

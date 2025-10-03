@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "../../redux/user/userSelectors";
 import { Link } from "react-router-dom";
-import Plus from "icons/Plus";
 import CloseIcon from "icons/Close";
 import LogOutBtn from "@components/LogOutBtn/LogOutBtn";
 
@@ -50,10 +49,6 @@ export default function BurgerMenu({
               <p className={css.text}>
                 Hello, {user?.name}! You can add a video to your video player.
               </p>
-              <button onClick={openModal} className={css.btnPlus}>
-                <Plus className={css.iconPlus} />
-                add video
-              </button>
             </div>
           ) : (
             <p className={css.text}>

@@ -8,6 +8,11 @@
   margin-bottom: 5px;
 }
 
+.text {
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
+
 .videoItem {
   max-width: 480px;
   cursor: pointer;
@@ -22,7 +27,6 @@
 
 .videoItem img {
   border-radius: 7px;
-  /* max-width: 480px; */
 }
 
 .containerTitle {
@@ -34,7 +38,6 @@
 video {
   height: 210px;
   height: auto;
-  /* max-width: 480px; */
 }
 
 .previewWrapper {
@@ -42,14 +45,8 @@ video {
 }
 
 .showMoreMessage {
-  text-align: "center";
+  text-align: center;
   margin-top: 20px;
-}
-
-.welcome {
-  display: flex;
-  gap: 10px;
-  align-items: center;
 }
 
 .catImg {

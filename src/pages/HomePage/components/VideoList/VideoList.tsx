@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import DeleteVideoBtn from "@pages/HomePage/components/VideoList/DeleteVideoBtn/DeleteVideoBtn";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useVideoListPaginated } from "./hooks/useVideoList";
-import VideoCamera from "/videocamera.png";
 import Cat from "/favicon.png";
+import AddVideoBtn from "../AddVideoBtn/AddVideoBtn";
 
 export default function VideoList() {
   const dispatch = useAppDispatch();
@@ -75,11 +75,11 @@ export default function VideoList() {
     <>
       {visibleVideos.length === 0 ? (
         <>
-          <h3 className={css.welcome}>
-            Welcome to VideoHub{" "}
-            <img className={css.catImg} src={Cat} alt="cat" />
-          </h3>
-          <p>Upload videos, create collections, and share with friends</p>
+          <h3>Welcome to VideoHub!</h3>
+          <p className={css.text}>
+            Upload videos, create collections, and share with friends
+          </p>
+          <AddVideoBtn />
         </>
       ) : (
         <InfiniteScroll
@@ -95,7 +95,9 @@ export default function VideoList() {
             )
           }
           endMessage={
-            <h4 className={css.showMoreMessage}>You have seen all videos!</h4>
+            videos.length > 6 && (
+              <h4 className={css.showMoreMessage}>You have seen all videos!</h4>
+            )
           }
         >
           <ul className={css.videoList}>

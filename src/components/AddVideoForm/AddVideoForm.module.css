@@ -24,7 +24,7 @@
 .form h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #fbbc05;
+  color: #e9a21e;
 }
 
 .label {
@@ -74,7 +74,7 @@ iframe {
 }
 
 .error {
-  color: rgb(255, 72, 0);
+  color: #d43030;
   font-size: 14px;
   margin: 0;
 }

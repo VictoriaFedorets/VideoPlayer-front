@@ -7,12 +7,27 @@ import AddVideoForm from "@components/AddVideoForm/AddVideoForm";
 import { useAppDispatch } from "redux/hooks";
 import { addVideoToLS } from "redux/videos/videosOperations";
 import Cat from "/favicon.png";
+import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
 
-export default function AddVideoBtn() {
+interface AddVideoBtnProps {
+  className?: string;
+}
+
+export default function AddVideoBtn({ className }: AddVideoBtnProps) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
+
+  const openModal = () => {
+    if (!isLoggedIn) {
+      navigate("/login");
+      return;
+    }
+    setIsModalOpen(true);
+  };
+
   const closeModal = () => setIsModalOpen(false);
 
   const handleAddVideo = (data: {
@@ -31,13 +46,11 @@ export default function AddVideoBtn() {
 
   return (
     <>
-      {isLoggedIn && (
-        <button onClick={openModal} className={css.btnPlus}>
-          <Plus className={css.iconPlus} />
-          {""}add video
-          <img className={css.logoCat} src={Cat} alt="cat with camera" />
-        </button>
-      )}
+      <button onClick={openModal} className={clsx(css.btnPlus, className)}>
+        <Plus className={css.iconPlus} />
+        {""}add video
+        <img className={css.logoCat} src={Cat} alt="cat with camera" />
+      </button>
 
       {isModalOpen && (
         <AddVideoForm
